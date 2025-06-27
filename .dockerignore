@@ -1,0 +1,10 @@
+node_modules
+
+logs/
+tmp/
+dist/
+
+.env
+.dockerignore
+
+Dockerfile
