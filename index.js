@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from 'dotenv'
+import bodyparser from 'body-parser'
 
-import authController from "./controllers/auth-controller.js";
+import insumoController from "./controllers/insumo-controller.js";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
-const env = process.env.NODE_ENV || "development";
+
+app.use(bodyparser.json({limit: '2mb'}));
 
 app.get("/", (req, res) => {
 	console.log("Received a request at /");
@@ -17,8 +19,8 @@ app.get("/status", (req, res) => {
 	res.send("running...");
 });
 
-app.use("/auth", authController);
+app.use("/insumo", insumoController);
 
 app.listen(port, () => {
-    console.log(`API is running on port ${port} in the ${env} environment`);
+    console.log(`API is running on port ${port}`);
 });
